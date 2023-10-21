@@ -1,0 +1,26 @@
+CREATE DATABASE tracking_orders;
+USE tracking_orders;
+
+CREATE TABLE person (
+    person_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120),
+    birth_place VARCHAR(120),
+    birth_date DATE,
+    email VARCHAR(120)
+);
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    from_location VARCHAR(120),
+    ordered_food VARCHAR(120),
+    price INT,
+    ordered_by INT,
+    FOREIGN KEY (ordered_by) REFERENCES person(person_id)
+);
+INSERT INTO person (name, birth_place, birth_date, email)
+VALUES
+    ('Kiss Ági', 'Budapest', '1980-01-15', 'kiss.agi@gmail.com'),
+    ('Nagy Ádám', 'Budapest', '1985-03-22', 'nagy.adam@gmail.com');
+INSERT INTO orders (from_location, ordered_food, price, ordered_by)
+VALUES
+    ('Pizza King', 'Aznapos pizza', 2500, 1),
+    ('Pizza Forte', 'Másnapos pizza', 3200, 2);

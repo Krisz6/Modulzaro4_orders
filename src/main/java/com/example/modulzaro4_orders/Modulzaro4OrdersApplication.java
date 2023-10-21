@@ -7,4 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Modulzaro4OrdersApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Modulzaro4OrdersApplication.class, args
+        SpringApplication.run(Modulzaro4OrdersApplication.class, args);
+    }
+
+}

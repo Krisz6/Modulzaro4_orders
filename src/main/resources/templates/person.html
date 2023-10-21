@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Person</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-$END$
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/home}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" th:href="@{/person}">Person</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/order}">Order</a>
+    </li>
+</ul>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Birth Place</th>
+        <th>Birth Date</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tr th:each="person : ${persons}">
+
+        <td th:text="${person.id}"></td>
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.birthPlace}"></td>
+        <td th:text="${person.birthDate}"></td>
+        <td th:text="${person.email}"></td>
+        <td>
+            <a th:href="@{'/person/' + ${person.id}}">
+                <button type="submit">SHOW</button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{'/person/edit/' + ${person.id}}" >
+                <button type="submit">EDIT</button>
+            </a>
+        </td>
+        <td>
+            <form th:action="@{'/person/delete/'+ ${person.id}}" method="post">
+                <input type="hidden" th:value="${person}">
+                <button type="submit">DELETE</button>
+            </form>
+        </td>
+    </tr>
+
+</table>
+<a th:href="@{/person/new}">
+    <button type="submit">NEW</button>
+</a>
 </body>
 </html>
